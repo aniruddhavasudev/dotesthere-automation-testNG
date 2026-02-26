@@ -203,32 +203,49 @@ name: Automation CI
 
 on:
   push:
+    branches: [ main, develop ]
   pull_request:
+    branches: [ main ]
 
 jobs:
   test:
+    name: Run UI & API Tests
     runs-on: windows-latest
+    timeout-minutes: 20
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
+          cache: maven
 
-      - name: Install Dependencies
+      - name: Verify Maven Version
+        run: mvn -version
+
+      - name: Clean & Install (Skip Tests)
         run: mvn clean install -DskipTests
 
-      - name: Run Tests
+      - name: Execute Test Suite
         run: mvn clean test
 
-      - name: Upload Report
+      - name: Upload Extent Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: extent-report
           path: test-output/ExtentReport.html
+
+      - name: Upload Surefire Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-results
+          path: target/surefire-reports/
 ```
 
 ---
