@@ -1,5 +1,3 @@
-# dotesthere-automation-java21
-
 # ☕ Nespresso – QA Architect Case Study
 
 End-to-End Test Automation Framework for **[https://dotesthere.com/](https://dotesthere.com/)**
