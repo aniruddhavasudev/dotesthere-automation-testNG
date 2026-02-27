@@ -42,7 +42,7 @@ src
 
 | Layer          | Technology     |
 | -------------- | -------------- |
-| Language       | Java 17        |
+| Language       | Java 21        |
 | UI Automation  | Playwright     |
 | API Automation | RestAssured    |
 | Test Framework | TestNG         |
