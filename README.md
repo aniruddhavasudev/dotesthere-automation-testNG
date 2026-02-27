@@ -178,7 +178,7 @@ mvn clean test
 Open:
 
 ```
-test-output/ExtentReport.html
+reports/ExtentReport.html
 ```
 
 ---
